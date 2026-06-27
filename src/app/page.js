@@ -236,11 +236,11 @@ export default function HomePage() {
   const activeDisplay = selectedHistoryItem || currentCreation;
 
   return (
-    <main className="flex-1 flex justify-center overflow-hidden bg-white">
+    <main className="flex-1 flex justify-center overflow-hidden bg-bg-page text-primary-text">
       <div className="flex h-full w-full max-w-[95%] lg:max-w-7xl overflow-hidden">
 
         {/* ── Left Sidebar Control Panel ── */}
-        <aside className="w-[360px] flex-shrink-0 border-r border-neutral-100 flex flex-col overflow-hidden">
+        <aside className="w-[360px] flex-shrink-0 border-r border-divider/50 flex flex-col overflow-hidden bg-bg-page">
 
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
 
@@ -252,14 +252,14 @@ export default function HomePage() {
               className="relative"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">
+                <span className="text-[10px] font-semibold text-secondary-text uppercase tracking-wider">
                   Reference Images ({inputUrls.length}/14)
                 </span>
                 {inputUrls.length > 0 && (
                   <button
                     onClick={() => !uploading && setInputUrls([])}
                     disabled={uploading}
-                    className="text-[10px] text-neutral-400 hover:text-red-500 disabled:text-neutral-200 disabled:cursor-not-allowed cursor-pointer"
+                    className="text-[10px] text-secondary-text hover:text-red-500 disabled:text-neutral-200 disabled:cursor-not-allowed cursor-pointer"
                   >
                     Clear All
                   </button>
@@ -271,12 +271,12 @@ export default function HomePage() {
                 <div 
                   className={`grid grid-cols-4 gap-2 mb-3 p-1.5 rounded-sm border transition-all ${
                     isDragging 
-                      ? "border-dashed border-neutral-950 bg-neutral-100/50 scale-[1.01]" 
+                      ? "border-dashed border-primary bg-bg-card-hover/50 scale-[1.01]" 
                       : "border-transparent"
                   }`}
                 >
                   {inputUrls.map((url, idx) => (
-                    <div key={idx} className="relative aspect-square rounded-sm border border-neutral-200 overflow-hidden group bg-neutral-50">
+                    <div key={idx} className="relative aspect-square rounded-sm border border-divider overflow-hidden group bg-bg-elevated">
                       <img src={url} alt={`input-${idx}`} className="w-full h-full object-cover" />
                       {!uploading && (
                         <button
@@ -290,13 +290,13 @@ export default function HomePage() {
                   ))}
                   {inputUrls.length < 14 && (
                     uploading ? (
-                      <div className="aspect-square flex flex-col items-center justify-center border border-dashed border-neutral-200 rounded-sm bg-neutral-50 text-neutral-400">
+                      <div className="aspect-square flex flex-col items-center justify-center border border-dashed border-divider rounded-sm bg-bg-elevated text-secondary-text">
                         <FaSpinner className="animate-spin text-xs" />
                       </div>
                     ) : (
                       <button
                         onClick={() => fileInputRef.current?.click()}
-                        className="aspect-square flex flex-col items-center justify-center border border-dashed border-neutral-200 hover:border-neutral-300 rounded-sm bg-neutral-50 text-neutral-400 hover:text-neutral-600 transition-all cursor-pointer"
+                        className="aspect-square flex flex-col items-center justify-center border border-dashed border-divider hover:border-primary/50 rounded-sm bg-bg-elevated text-secondary-text hover:text-primary-text transition-all cursor-pointer"
                       >
                         <FaPlus className="text-xs" />
                       </button>
@@ -310,26 +310,26 @@ export default function HomePage() {
                   onClick={() => !uploading && fileInputRef.current?.click()}
                   className={`flex flex-col items-center justify-center gap-1.5 p-5 border border-dashed rounded-sm cursor-pointer transition-all ${
                     isDragging
-                      ? "border-neutral-950 bg-neutral-100/50 scale-[1.01]"
-                      : "border-neutral-200 hover:border-neutral-300 bg-neutral-50"
+                      ? "border-primary bg-bg-card-hover/50 scale-[1.01]"
+                      : "border-divider hover:border-primary/50 bg-bg-card"
                   }`}
                 >
                   {uploading ? (
                     <>
-                      <FaSpinner className="animate-spin text-neutral-400 text-xs" />
-                      <span className="text-[11px] text-neutral-500">Uploading assets...</span>
+                      <FaSpinner className="animate-spin text-secondary-text text-xs" />
+                      <span className="text-[11px] text-secondary-text">Uploading assets...</span>
                     </>
                   ) : isDragging ? (
                     <>
-                      <FaUpload className="text-neutral-900 text-xs animate-bounce" />
-                      <span className="text-[11px] font-semibold text-neutral-900">Drop to upload!</span>
-                      <span className="text-[10px] text-neutral-500">Release to add files</span>
+                      <FaUpload className="text-primary-text text-xs animate-bounce" />
+                      <span className="text-[11px] font-semibold text-primary-text">Drop to upload!</span>
+                      <span className="text-[10px] text-secondary-text">Release to add files</span>
                     </>
                   ) : (
                     <>
-                      <FaUpload className="text-neutral-400 text-xs" />
-                      <span className="text-[11px] font-medium text-neutral-700">Upload product images</span>
-                      <span className="text-[10px] text-neutral-400">Drag & drop or click to upload</span>
+                      <FaUpload className="text-secondary-text text-xs" />
+                      <span className="text-[11px] font-medium text-primary-text">Upload product images</span>
+                      <span className="text-[10px] text-secondary-text">Drag & drop or click to upload</span>
                     </>
                   )}
                 </div>
@@ -338,7 +338,7 @@ export default function HomePage() {
 
             {/* Creative Prompt Input */}
             <div className="space-y-1.5">
-              <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider block">
+              <span className="text-[10px] font-semibold text-secondary-text uppercase tracking-wider block">
                 Creative Prompt
               </span>
               <textarea
@@ -346,11 +346,11 @@ export default function HomePage() {
                 onChange={(e) => setCustomPrompt(e.target.value)}
                 placeholder="Describe your pet product setting..."
                 rows={5}
-                className="w-full p-2.5 text-xs text-neutral-800 border border-neutral-200 focus:border-neutral-400 focus:outline-none rounded-sm resize-none leading-relaxed bg-neutral-50"
+                className="w-full p-2.5 text-xs text-primary-text border border-divider focus:border-primary/50 focus:outline-none rounded-sm resize-none leading-relaxed bg-bg-card"
               />
               <button
                 onClick={() => setCustomPrompt(DEFAULT_PROMPT)}
-                className="text-[10px] text-neutral-400 hover:text-neutral-600 block cursor-pointer"
+                className="text-[10px] text-secondary-text hover:text-primary-text block cursor-pointer"
               >
                 Reset to default
               </button>
@@ -358,17 +358,17 @@ export default function HomePage() {
 
             {/* Aspect Ratio Config */}
             <div className="space-y-1.5">
-              <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider block">
+              <span className="text-[10px] font-semibold text-secondary-text uppercase tracking-wider block">
                 Aspect Ratio
               </span>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-5 gap-1.5">
                 {ASPECT_RATIOS.map((ratio) => (
                   <button
                     key={ratio}
                     onClick={() => setAspectRatio(ratio)}
-                    className={`py-1.5 text-xs font-medium rounded-sm border transition-all cursor-pointer ${aspectRatio === ratio
-                      ? "bg-neutral-900 border-neutral-900 text-white shadow-sm"
-                      : "bg-white border-neutral-200 text-neutral-600 hover:bg-neutral-50 hover:border-neutral-300"
+                    className={`py-1.5 text-xs font-semibold rounded-sm border transition-all cursor-pointer ${aspectRatio === ratio
+                      ? "bg-primary border-primary text-primary-btn-text shadow-sm"
+                      : "bg-bg-card border-divider text-secondary-text hover:bg-bg-card-hover hover:border-divider/80"
                       }`}
                   >
                     {ratio}
@@ -380,12 +380,12 @@ export default function HomePage() {
           </div>
 
           {/* CTA Generate Footer Button */}
-          <div className="p-4 border-t border-neutral-100 bg-white">
+          <div className="p-4 border-t border-divider/50 bg-bg-page">
             {session ? (
               <button
                 onClick={handleGenerate}
                 disabled={generating || uploading}
-                className="w-full py-2 bg-neutral-950 hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:cursor-not-allowed text-white font-semibold text-xs rounded-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                className="w-full py-2 bg-primary hover:bg-primary-hover disabled:bg-divider/50 disabled:text-secondary-text disabled:cursor-not-allowed text-primary-btn-text font-semibold text-xs rounded-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm border border-primary/20"
               >
                 {generating ? (
                   <>
@@ -402,7 +402,7 @@ export default function HomePage() {
             ) : (
               <button
                 onClick={() => signIn("google")}
-                className="w-full py-2 bg-neutral-950 hover:bg-neutral-800 text-white font-semibold text-xs rounded-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2 bg-primary hover:bg-primary-hover text-primary-btn-text font-semibold text-xs rounded-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 Sign In to Generate
               </button>
@@ -412,27 +412,27 @@ export default function HomePage() {
         </aside>
 
         {/* ── Right Workspace Canvas & Gallery ── */}
-        <section className="flex-1 flex flex-col overflow-hidden bg-neutral-50/50">
+        <section className="flex-1 flex flex-col overflow-hidden bg-bg-page">
 
           {/* Main Showcase Canvas */}
           <div className="flex-1 flex flex-col items-center justify-center p-6 min-h-0">
             {activeDisplay ? (
               <div className="w-full h-full max-w-xl max-h-[80%] flex flex-col items-center justify-center gap-3">
 
-                <div className="relative w-full flex-1 min-h-0 bg-white rounded-sm border border-neutral-200 shadow-sm overflow-hidden flex items-center justify-center">
+                <div className="relative w-full flex-1 min-h-0 bg-bg-card rounded-sm border border-divider shadow-sm overflow-hidden flex items-center justify-center">
 
                   {activeDisplay.status === "processing" ? (
                     <div className="flex flex-col items-center gap-2.5">
-                      <FaSpinner className="animate-spin text-neutral-400 text-lg" />
+                      <FaSpinner className="animate-spin text-primary text-lg" />
                       <div className="text-center">
-                        <p className="text-xs font-semibold text-neutral-800">Generating Ad Creative...</p>
-                        <p className="text-[10px] text-neutral-400 mt-0.5">Usually takes 20-30 seconds</p>
+                        <p className="text-xs font-semibold text-primary-text">Generating Ad Creative...</p>
+                        <p className="text-[10px] text-secondary-text mt-0.5">Usually takes 20-30 seconds</p>
                       </div>
                     </div>
                   ) : activeDisplay.status === "failed" ? (
                     <div className="text-center p-4">
                       <p className="text-xs font-semibold text-red-500">Generation Failed</p>
-                      <p className="text-[10px] text-neutral-400 mt-1">{activeDisplay.error || "Unknown error occurred"}</p>
+                      <p className="text-[10px] text-secondary-text mt-1">{activeDisplay.error || "Unknown error occurred"}</p>
                     </div>
                   ) : (
                     <img
@@ -446,19 +446,19 @@ export default function HomePage() {
 
                 {/* Show Details and Action below preview */}
                 {activeDisplay.status === "completed" && (
-                  <div className="w-full flex items-center justify-between bg-white border border-neutral-200 rounded-sm p-3 shadow-xs">
+                  <div className="w-full flex items-center justify-between bg-bg-card border border-divider rounded-sm p-3 shadow-xs">
                     <div className="min-w-0">
-                      <p className="text-[11px] font-semibold text-neutral-800 truncate">
+                      <p className="text-[11px] font-semibold text-primary-text truncate">
                         {activeDisplay.prompt.slice(0, 70)}...
                       </p>
-                      <span className="text-[9px] text-neutral-400 font-medium">
+                      <span className="text-[9px] text-secondary-text font-medium">
                         Aspect: {activeDisplay.aspectRatio || "1:1"}
                       </span>
                     </div>
                     <button
                       onClick={() => handleDownload(activeDisplay.outputUrl, `pet-creative-${activeDisplay.id}.jpg`)}
                       disabled={downloadingImage}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 disabled:bg-neutral-400 text-white rounded-sm text-[11px] font-medium transition-all cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary hover:bg-primary-hover disabled:bg-divider text-primary-btn-text rounded-sm text-[11px] font-medium transition-all cursor-pointer"
                     >
                       {downloadingImage ? (
                         <FaSpinner className="animate-spin text-[9px]" />
@@ -472,12 +472,12 @@ export default function HomePage() {
 
               </div>
             ) : (
-              <div className="w-full h-full max-w-xl max-h-[80%] border border-dashed border-neutral-200 rounded-sm bg-white flex flex-col items-center justify-center p-6 text-center">
-                <div className="h-10 w-10 bg-neutral-50 rounded-full flex items-center justify-center text-neutral-400 mb-3 border border-neutral-100">
+              <div className="w-full h-full max-w-xl max-h-[80%] border border-dashed border-divider rounded-sm bg-bg-card flex flex-col items-center justify-center p-6 text-center">
+                <div className="h-10 w-10 bg-bg-elevated rounded-full flex items-center justify-center text-secondary-text mb-3 border border-divider/50">
                   <FaImage className="text-sm" />
                 </div>
-                <p className="text-xs font-semibold text-neutral-800">Ready to Create</p>
-                <p className="text-[10px] text-neutral-400 max-w-xs mt-1 leading-relaxed">
+                <p className="text-xs font-semibold text-primary-text">Ready to Create</p>
+                <p className="text-[10px] text-secondary-text max-w-xs mt-1 leading-relaxed">
                   Upload your pet product photos, adjust settings, and generate a photorealistic ad scene.
                 </p>
               </div>
@@ -486,9 +486,9 @@ export default function HomePage() {
 
           {/* User History Gallery */}
           {history.length > 0 && (
-            <div className="h-36 border-t border-neutral-100 bg-white flex flex-col overflow-hidden">
-              <div className="px-4 py-2 flex items-center justify-between border-b border-neutral-50">
-                <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">
+            <div className="h-36 border-t border-divider/50 bg-bg-page flex flex-col overflow-hidden">
+              <div className="px-4 py-2 flex items-center justify-between border-b border-divider/50">
+                <span className="text-[10px] font-semibold text-secondary-text uppercase tracking-wider">
                   Creations Gallery ({history.length})
                 </span>
               </div>
@@ -497,13 +497,13 @@ export default function HomePage() {
                   <button
                     key={item.id}
                     onClick={() => setSelectedHistoryItem(item)}
-                    className={`h-20 w-20 flex-shrink-0 rounded-sm border overflow-hidden transition-all bg-neutral-50 cursor-pointer relative ${activeDisplay?.id === item.id
-                      ? "border-neutral-900 ring-1 ring-neutral-900 shadow-sm"
-                      : "border-neutral-200 hover:border-neutral-400"
+                    className={`h-20 w-20 flex-shrink-0 rounded-sm border overflow-hidden transition-all bg-bg-elevated cursor-pointer relative ${activeDisplay?.id === item.id
+                      ? "border-primary ring-1 ring-primary shadow-sm"
+                      : "border-divider hover:border-primary/50"
                       }`}
                   >
                     {item.status === "processing" ? (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-neutral-400">
+                      <div className="w-full h-full flex flex-col items-center justify-center text-secondary-text">
                         <FaSpinner className="animate-spin text-xs" />
                         <span className="text-[8px] mt-1 font-medium">Pending</span>
                       </div>
