@@ -15,8 +15,8 @@ export default function RootLayout({ children }) {
   const theme = config?.theme || "slate-indigo";
 
   return (
-    <html lang="en" className="h-full w-full" data-theme={theme}>
-      <body className={`${font.variable} font-sans h-full w-full flex flex-col antialiased bg-bg-page text-primary-text overflow-hidden`}>
+    <html lang="en" className={`${font.variable} h-full w-full`} data-theme={theme}>
+      <body className="font-sans h-full w-full flex flex-col antialiased bg-bg-page text-primary-text overflow-hidden">
         <Providers>
           <Navbar />
           <div className="flex-1 flex flex-col overflow-hidden min-h-0">
